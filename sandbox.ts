@@ -1,17 +1,3 @@
-// const character = 'mario';
-
-// console.log(character);
-
-// // Interaction with DOM using query selectors is possible.
-
-// const inputs = document.querySelectorAll('input');
-
-// console.log(inputs);
-
-// inputs.forEach((input) => {
-//     console.log(input);
-// })
-
 // Supertype of all data types : (Any)
 // Built-in / primitive types : number, string, boolean, void, null, undefined.
 // User-Defined types : Arrays, enum, classes, interfaces etc.
