@@ -1,4 +1,3 @@
-// character can have strings. 
 var character = 'mario';
 console.log(character);
 // Interaction with DOM using query selectors is possible.

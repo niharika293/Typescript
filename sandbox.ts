@@ -1,4 +1,3 @@
-// character can have strings. 
 const character = 'mario';
 
 console.log(character);
