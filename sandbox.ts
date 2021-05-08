@@ -27,7 +27,7 @@ const circle = (diameter : number) => {
     return diameter * Math.PI;
 }
 
-console.log(circle(5)); //returns Nan.
+console.log(circle(5)); //returns 15.707963267948966
 
 // Typescript allows us to type-check during development, therefore, less errors in runtime, and cleaner code.
 
