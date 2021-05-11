@@ -1,12 +1,20 @@
-// Array Destructuring : Refers to breaking up the structure of an entity. 
-// TypeScript supports destructuring when used in the context of an array.
+// Looping Constructs 
+// 1. (Index, Element Property)
+// (A) : for, for-in : gives you access to index in an array, not the actual element. 
 
-var arr : number[] = [12,13];
-var [x,y] = arr;
+var arr = ['a','b','c'];
 
-// On compiling to Javascript, it appears as : 
-// var x = arr[0], y = arr[1];
+console.log("Traversing using (for) : "); //a,b,c
+for(let i=0; i<arr.length ; i++){
+    console.log(arr[i]);
+}
+console.log("Traversing using (for-in) : "); //a,b,c
+for(let i in arr){
+    console.log(arr[i]);
+}
 
-console.log("Destructing x : " + x);
-console.log("Destructing y : " + y);
+// (B) : for-each, for-of : access to array element itself is given.
+// For-each lets you have array index, for-of doesn't.
 
+arr.forEach((value, index) => console.log("Printing value from for-each :" +value)); //a,b,c
+arr.forEach((value, index) => console.log("Printing index from for-each :" +index)); //0,1,2
