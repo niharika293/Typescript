@@ -14,3 +14,8 @@ for (var i in arr) {
 // For-each lets you have array index, for-of doesn't.
 arr.forEach(function (value, index) { return console.log("Printing value from for-each :" + value); }); //a,b,c
 arr.forEach(function (value, index) { return console.log("Printing index from for-each :" + index); }); //0,1,2
+console.log('Using for-of : ');
+for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
+    var v = arr_1[_i];
+    console.log(v); //a,b,c
+}

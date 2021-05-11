@@ -18,3 +18,8 @@ for(let i in arr){
 
 arr.forEach((value, index) => console.log("Printing value from for-each :" +value)); //a,b,c
 arr.forEach((value, index) => console.log("Printing index from for-each :" +index)); //0,1,2
+
+console.log('Using for-of : ');
+for (let v of arr) {
+    console.log(v); //a,b,c
+}
