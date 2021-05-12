@@ -1,25 +1,93 @@
-// Looping Constructs 
-// 1. (Index, Element Property)
-// (A) : for, for-in : gives you access to index in an array, not the actual element. 
+// Explicit types : Declaring variables but not giving them values.
 
-var arr = ['a','b','c'];
+let character : string;
+let age : number;
+let isLoggedIn : boolean;
 
-console.log("Traversing using (for) : "); //a,b,c
-for(let i=0; i<arr.length ; i++){
-    console.log(arr[i]);
+// age = 'Luigi';  // type error.
+
+// Arrays : 
+
+let ninjas : string[]; // Declares ninjas as string array, but the array is not defined. Hence, error in push.
+// ninjas.push('Luigi'); //Uncaught TypeError: Cannot read property 'push' of undefined
+// Declare this array as empty in order to read properties like push() etc.
+ninjas = ['Yoshi','ranger'];
+ninjas.push('Luigi'); //Now since the array has been defined above, hence no error in push().
+console.log("Ninja Array! : " + ninjas);
+
+// Better way -> Using empty arrays.
+
+let ninjasNew : string[] = [];
+ninjasNew.push('Mario');
+console.log("Ninja New Array! : " + ninjasNew);
+
+// Unioun types : Mixed Types allowed.
+
+let mixedArray : (string|number)[] = [];
+mixedArray.push('Mario');
+mixedArray.push(7);
+// mixedArray.push(true); //type error
+console.log("Mixed New Array! : " + mixedArray);
+
+// Unioun types can also be used on numbers, no compulsion to be used for only arrays.
+
+let mixedVariable : (string|number|boolean);
+mixedVariable = 'heyyy!';
+mixedVariable = 56;
+mixedVariable = true;
+// mixedVariable = [90,87]; //error
+
+console.log("Mixed new variable : " + mixedVariable);
+
+// Objects : 
+// Method -1 : writing 'object'
+let ninjaOne : object; 
+ninjaOne = {
+    name : 'Luigi',
+    age : 25
 }
-console.log("Traversing using (for-in) : "); //a,b,c
-for(let i in arr){
-    console.log(arr[i]);
+// ninjaOne = 'hello'; //type error
+ninjaOne = [] ; //allowed since array is also an object. 
+// ninjaOne.test = 'hey';  //error in adding new property
+
+// Method - 2 : 
+
+let ninjaTwo = {
+    name : 'Luigi',
+    age : 25,
+    belt : 'black'
 }
 
-// (B) : for-each, for-of : access to array element itself is given.
-// For-each lets you have array index, for-of doesn't.
+// ninjaTwo = []; // not allowed in these case since, the properties have been defined first. 
 
-arr.forEach((value, index) => console.log("Printing value from for-each :" +value)); //a,b,c
-arr.forEach((value, index) => console.log("Printing index from for-each :" +index)); //0,1,2
+// ninjaTwo.test = 'hey'; //error in adding new property
 
-console.log('Using for-of : ');
-for (let v of arr) {
-    console.log(v); //a,b,c
+// Re-defining 
+ninjaTwo={
+    name : 'Luigi',
+    age : 25,
+    belt : 'black',
+    //height : 144 // Once we've defined an object, no additional property can be added.
 }
+
+console.log("Ninja Two : " + ninjaTwo.name , ninjaTwo.age, ninjaTwo.belt);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

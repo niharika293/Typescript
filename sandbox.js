@@ -1,21 +1,54 @@
-// Looping Constructs 
-// 1. (Index, Element Property)
-// (A) : for, for-in : gives you access to index in an array, not the actual element. 
-var arr = ['a', 'b', 'c'];
-console.log("Traversing using (for) : "); //a,b,c
-for (var i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
-}
-console.log("Traversing using (for-in) : "); //a,b,c
-for (var i in arr) {
-    console.log(arr[i]);
-}
-// (B) : for-each, for-of : access to array element itself is given.
-// For-each lets you have array index, for-of doesn't.
-arr.forEach(function (value, index) { return console.log("Printing value from for-each :" + value); }); //a,b,c
-arr.forEach(function (value, index) { return console.log("Printing index from for-each :" + index); }); //0,1,2
-console.log('Using for-of : ');
-for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
-    var v = arr_1[_i];
-    console.log(v); //a,b,c
-}
+// Explicit types : Declaring variables but not giving them values.
+var character;
+var age;
+var isLoggedIn;
+// age = 'Luigi';  // type error.
+// Arrays : 
+var ninjas; // Declares ninjas as string array, but the array is not defined. Hence, error in push.
+// ninjas.push('Luigi'); //Uncaught TypeError: Cannot read property 'push' of undefined
+// Declare this array as empty in order to read properties like push() etc.
+ninjas = ['Yoshi', 'ranger'];
+ninjas.push('Luigi'); //Now since the array has been defined above, hence no error in push().
+console.log("Ninja Array! : " + ninjas);
+// Better way -> Using empty arrays.
+var ninjasNew = [];
+ninjasNew.push('Mario');
+console.log("Ninja New Array! : " + ninjasNew);
+// Unioun types : Mixed Types allowed.
+var mixedArray = [];
+mixedArray.push('Mario');
+mixedArray.push(7);
+// mixedArray.push(true); //type error
+console.log("Mixed New Array! : " + mixedArray);
+// Unioun types can also be used on numbers, no compulsion to be used for only arrays.
+var mixedVariable;
+mixedVariable = 'heyyy!';
+mixedVariable = 56;
+mixedVariable = true;
+// mixedVariable = [90,87]; //error
+console.log("Mixed new variable : " + mixedVariable);
+// Objects : 
+// Method -1 : writing 'object'
+var ninjaOne;
+ninjaOne = {
+    name: 'Luigi',
+    age: 25
+};
+// ninjaOne = 'hello'; //type error
+ninjaOne = []; //allowed since array is also an object. 
+// ninjaOne.test = 'hey';  //error in adding new property
+// Method - 2 : 
+var ninjaTwo = {
+    name: 'Luigi',
+    age: 25,
+    belt: 'black'
+};
+// ninjaTwo = []; // not allowed in these case since, the properties have been defined first. 
+// ninjaTwo.test = 'hey'; //error in adding new property
+// Re-defining 
+ninjaTwo = {
+    name: 'Luigi',
+    age: 25,
+    belt: 'black'
+};
+console.log("Ninja Two : " + ninjaTwo.name, ninjaTwo.age, ninjaTwo.belt);
