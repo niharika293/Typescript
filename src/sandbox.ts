@@ -29,6 +29,7 @@ ninja = {name : 'yoshi',age :  25};
 
 ninja = {name : 25 ,age :  'yoshi'};
 
+console.log("yo!");
 console.log('Ninja is ' + ninja);
 
 // Any can cause major errors regarding types if not used with caution, as it rips out the heart of 
