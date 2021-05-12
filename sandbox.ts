@@ -1,90 +1,38 @@
-// Explicit types : Declaring variables but not giving them values.
+// Any  : At any point of time, it can change its typpe.
 
-let character : string;
-let age : number;
-let isLoggedIn : boolean;
+let age : any = 25;
+age = 'ryuk' ; //allowed.
+age = false ; //allowed.
 
-// age = 'Luigi';  // type error.
+console.log(' Age : ' + age); //false
 
-// Arrays : 
+let mixed : any[] = [];
+mixed.push('luigi');
+mixed.push(88);
 
-let ninjas : string[]; // Declares ninjas as string array, but the array is not defined. Hence, error in push.
-// ninjas.push('Luigi'); //Uncaught TypeError: Cannot read property 'push' of undefined
-// Declare this array as empty in order to read properties like push() etc.
-ninjas = ['Yoshi','ranger'];
-ninjas.push('Luigi'); //Now since the array has been defined above, hence no error in push().
-console.log("Ninja Array! : " + ninjas);
+console.log("Mixed : " + mixed); //Mixed : luigi,88
 
-// Better way -> Using empty arrays.
+// Defining type of Ninja Object.
+// Error : 'any' only refers to a type, but is being used as a value here.
+// let ninja = {
+//     name : any,
+//     age : any
+// }
+// Use colon to get rid of this error as we're declaring a type of ninja object & not assigning values.
 
-let ninjasNew : string[] = [];
-ninjasNew.push('Mario');
-console.log("Ninja New Array! : " + ninjasNew);
-
-// Unioun types : Mixed Types allowed.
-
-let mixedArray : (string|number)[] = [];
-mixedArray.push('Mario');
-mixedArray.push(7);
-// mixedArray.push(true); //type error
-console.log("Mixed New Array! : " + mixedArray);
-
-// Unioun types can also be used on numbers, no compulsion to be used for only arrays.
-
-let mixedVariable : (string|number|boolean);
-mixedVariable = 'heyyy!';
-mixedVariable = 56;
-mixedVariable = true;
-// mixedVariable = [90,87]; //error
-
-console.log("Mixed new variable : " + mixedVariable);
-
-// Objects : 
-// Method -1 : writing 'object'
-let ninjaOne : object; 
-ninjaOne = {
-    name : 'Luigi',
-    age : 25
-}
-// ninjaOne = 'hello'; //type error
-ninjaOne = [] ; //allowed since array is also an object. 
-// ninjaOne.test = 'hey';  //error in adding new property
-
-// Method - 2 : 
-
-let ninjaTwo = {
-    name : 'Luigi',
-    age : 25,
-    belt : 'black'
+let ninja : {
+    name : any,
+    age : any
 }
 
-// ninjaTwo = []; // not allowed in these case since, the properties have been defined first. 
+ninja = {name : 'yoshi',age :  25};
 
-// ninjaTwo.test = 'hey'; //error in adding new property
+ninja = {name : 25 ,age :  'yoshi'};
 
-// Re-defining 
-ninjaTwo={
-    name : 'Luigi',
-    age : 25,
-    belt : 'black',
-    //height : 144 // Once we've defined an object, no additional property can be added.
-}
+console.log('Ninja is ' + ninja);
 
-console.log("Ninja Two : " + ninjaTwo.name , ninjaTwo.age, ninjaTwo.belt);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Any can cause major errors regarding types if not used with caution, as it rips out the heart of 
+// type-script for which it is being used in the first place.
 
 
 
