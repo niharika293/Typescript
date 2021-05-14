@@ -8,19 +8,9 @@
 // error if no access modifiers are present!
 
 // Parameters can be deifned inside the parantheses of the constructor & they're initialised when invoking the constructors.
- 
-class Invoice{
-    constructor(
-        public client : string, // default - public
-        readonly details : string,
-        private amount : number,
-    ){}
+// In import, ts file is not going to be used, since ts gets compiled to js & browsers understand js.
 
-    format(){
-        // this.details = 'something else' ; //error since readonly!
-        return (`${this.client} owes ${this.amount} for ${this.details}`);
-    }    
-}
+import {Invoice} from './Classes/Invoice.js';
 
 // Instantiate the class = create an object!
 
@@ -40,6 +30,15 @@ invoices.forEach( inv => {
 
 });
 
+// Drawbacks of Module :
+
+// 1. Only modern browsers use the module system.
+// 2. It doesnt bundle our code into a single file & the browser is also using a module system to load
+// separate files & make different requests.
+
+// After compilation, Classes folder will be created inside Public.
+
+// To combat above issues, Use "webpack", hence only 1 network request will be created & all browsers will be supported.
 
 
 
