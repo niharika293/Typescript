@@ -1,53 +1,61 @@
-// Accessing DOM Elements in Type-cript is similar to Javascript.
+// Classes are similar to JavaScript here!
+// A class is a blue-print for an object. 
 
-const anchor = document.querySelector('a');
+// Example : If we want many "invoice" objects, then we can create a class to structure those objects & use accordingly. 
 
-console.log(anchor); //Returns anchor
-
-// console.log(anchor.href); 
-//error : since Typescript doesn't have direct access to the index.html page & it's warning that
-//  it can possibly be null.
-
-// Fix - 1. Put ! mark while searching, this means that the developer is certain that there surely exists that element which he's lookng for.
-
-const anchorNew = document.querySelector('a')!;
-console.log(anchorNew.href); //error goes 
-
-// Fix - 2 : Handle Null
-
-if(anchor){
-    console.log(anchor.href); //error goes!!
+class Invoice{
+    client : string;
+    details : string;
+    amount : number;
+    // Error : Property 'client' has no initializer and is not definitely assigned in the constructor.ts(2564)
+    // Fix - 1 : Assign default value which is not a good fix, as an object can practically hold different values.
+    // Fix - 2 : Use constructors, as when a new object is created, they get called and different values can be initialised.
+    
+    constructor(c: string, d: string, a : number){
+        this.client = c;
+        this.details = d;
+        this.amount = a; //Error gone!
+    }
+    format(){
+        return (`${this.client} owes ${this.amount} for ${this.details}`);
+    }    
 }
 
-// Typescript contains special types for every DOM Element. 
+// Instantiate the class = create an object!
 
-// finding by class doesn't return any specific type but element type.
-//  hence, type-cast it for better code performance.
+const invOne = new Invoice('Mario', 'Save my princess', 700);
+const invTwo = new Invoice('Luigi', 'Save Marios princess', 800);
 
-const form = document.querySelector('.new-item-form')!;
+console.log(invOne);
+console.log(invTwo);
 
-// Type-casting => We're expliitly defining what type an element would be!
+// Classes can be used with arrays to limit what kind of objects can be added to the arrays.
 
-const formNew  = document.querySelector('.new-item-form') as HTMLFormElement;
+// let invoices : string[] = [];
 
-console.log ("Printing form children : " + formNew.children);
+let invoices : Invoice[] = []; //only object with type Invoice can be added to this array.
 
-// No need to use ! and Type-casting together.
+invoices.push(invOne);
+invoices.push(invTwo);
+// invoices.push('Yoshi','Sweeper', 800); //error , use it as an object of invoice, no random values allowed!
 
-const type = document.querySelector('select')!;
-const toFrom = document.querySelector('#tofrom') as HTMLInputElement;
-const details = document.querySelector('#details') as HTMLInputElement;
-const amount = document.querySelector('#amount') as HTMLInputElement;
+console.log(invoices);
+
+// Default properties in class are public. 
+
+invOne.client = 'yoshi';
+invTwo.amount = 70;
+
+console.log("invoices after tampering");
+console.log(invoices);
+
+// Hence, use access modifiers to protect your code & limit the accessibiltiy of class properties.
 
 
-formNew.addEventListener('submit',(e : Event) => {
-    e.preventDefault();
-    console.log(type.value, 
-        toFrom.value,
-        details.value,
-        amount.valueAsNumber //since Javascript prints number as string, hence use this.
-    )
-}); // invoice Niharika Designing 500
+
+
+
+
 
 
 

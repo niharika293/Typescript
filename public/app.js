@@ -1,31 +1,36 @@
 "use strict";
-// Accessing DOM Elements in Type-cript is similar to Javascript.
-var anchor = document.querySelector('a');
-console.log(anchor); //Returns anchor
-// console.log(anchor.href); 
-//error : since Typescript doesn't have direct access to the index.html page & it's warning that
-//  it can possibly be null.
-// Fix - 1. Put ! mark while searching, this means that the developer is certain that there surely exists that element which he's lookng for.
-var anchorNew = document.querySelector('a');
-console.log(anchorNew.href); //error goes 
-// Fix - 2 : Handle Null
-if (anchor) {
-    console.log(anchor.href); //error goes!!
-}
-// Typescript contains special types for every DOM Element. 
-// finding by class doesn't return any specific type but element type.
-//  hence, type-cast it for better code performance.
-var form = document.querySelector('.new-item-form');
-// Type-casting => We're expliitly defining what type an element would be!
-var formNew = document.querySelector('.new-item-form');
-console.log("Printing form children : " + formNew.children);
-// No need to use ! and Type-casting together.
-var type = document.querySelector('select');
-var toFrom = document.querySelector('#tofrom');
-var details = document.querySelector('#details');
-var amount = document.querySelector('#amount');
-formNew.addEventListener('submit', function (e) {
-    e.preventDefault();
-    console.log(type.value, toFrom.value, details.value, amount.valueAsNumber //since Javascript prints number as string, hence use this.
-    );
-}); // invoice Niharika Designing 500
+// Classes are similar to JavaScript here!
+// A class is a blue-print for an object. 
+// Example : If we want many "invoice" objects, then we can create a class to structure those objects & use accordingly. 
+var Invoice = /** @class */ (function () {
+    // Error : Property 'client' has no initializer and is not definitely assigned in the constructor.ts(2564)
+    // Fix - 1 : Assign default value which is not a good fix, as an object can practically hold different values.
+    // Fix - 2 : Use constructors, as when a new object is created, they get called and different values can be initialised.
+    function Invoice(c, d, a) {
+        this.client = c;
+        this.details = d;
+        this.amount = a; //Error gone!
+    }
+    Invoice.prototype.format = function () {
+        return (this.client + " owes " + this.amount + " for " + this.details);
+    };
+    return Invoice;
+}());
+// Instantiate the class = create an object!
+var invOne = new Invoice('Mario', 'Save my princess', 700);
+var invTwo = new Invoice('Luigi', 'Save Marios princess', 800);
+console.log(invOne);
+console.log(invTwo);
+// Classes can be used with arrays to limit what kind of objects can be added to the arrays.
+// let invoices : string[] = [];
+var invoices = []; //only object with type Invoice can be added to this array.
+invoices.push(invOne);
+invoices.push(invTwo);
+// invoices.push('Yoshi','Sweeper', 800); //error , use it as an object of invoice, no random values allowed!
+console.log(invoices);
+// Default properties in class are public. 
+invOne.client = 'yoshi';
+invTwo.amount = 70;
+console.log("invoices after tampering");
+console.log(invoices);
+// Hence, use access modifiers to protect your code & limit the accessibiltiy of class properties.
