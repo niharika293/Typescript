@@ -4,30 +4,51 @@
 // It is the responsibility of the class / object that implements the interface by providing implementation
 // for all members of the interface.
 
-interface IsPerson{
-    name : string;
-    age : number;
-    speak(a : string) : void;
-    spend(a : number) : number;
-} //only declare here
+import {Invoice} from './Classes/Invoice.js';
+import {Payment} from './Classes/Payment.js';
+import {HasFormatter} from './Interfaces/HasFormatter.js';
 
-// An object using the type as interface. 
-const me : IsPerson = {
-    name : 'Mario',
-    age : 35,
-    speak(text : string) : void{
-        console.log("Speaks : " + text + "and spends : ");
-    },
-    spend(amount : number) : number{
-        return amount;
+let docOne : HasFormatter;
+let docTwo : HasFormatter;
+
+docOne = new Invoice('Yoshi', 'Web work',200 );
+docTwo = new Payment('Mario', 'Plumbing work',400 );
+
+let docs : HasFormatter[] = [];
+
+docs.push(docOne);
+docs.push(docTwo);
+console.log("printing docs : ");
+console.log(docs);
+
+// We want the object to be created based on their type : Invoice / Payment based on what user selects & 
+// they should get stored in accordance to their classes (Invoice / Payment).
+
+// Extracting the DOM elements in variables like Jquery / JS.
+
+const form = document.querySelector('.new-item-form') as HTMLFormElement;
+const type = document.querySelector('#type') as HTMLSelectElement;
+const toFrom = document.querySelector('#tofrom') as HTMLInputElement;
+const details = document.querySelector('#details') as HTMLInputElement;
+const amount = document.querySelector('#amount') as HTMLInputElement;
+
+form.addEventListener('submit',(e : Event) => {
+    e.preventDefault();
+    let doc : HasFormatter;
+    if(type.value === 'Invoice'){
+        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
     }
-}
+    else{
+        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+    }
+    console.log(doc);
+});
 
-console.log(me);
+// Interfaces can extend another interface / multiple interfaces.
+// Interfaces can extend classes too!
 
-const greetPerson = (person : IsPerson) => {
-    console.log("Hello " + person.name);
-}
 
-greetPerson(me);
+
+
+
 

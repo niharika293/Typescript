@@ -6,16 +6,16 @@
 
 import {HasFormatter} from '../Interfaces/HasFormatter'
 
-export class Invoice implements HasFormatter {
+export class Payment implements HasFormatter {
     constructor(
-        public client : string, // default - public
+        public recipient : string, // default - public
         readonly details : string,
         private amount : number,
     ){}
 
     format(){
         // this.details = 'something else' ; //error since readonly!
-        return (`${this.client} owes ${this.amount} for ${this.details}`);
+        return (`${this.recipient} is owed ${this.amount} for ${this.details}`);
     }    
 }
 
