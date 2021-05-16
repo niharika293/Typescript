@@ -1,69 +1,23 @@
-//  Generics : allow us to create reusable blocks of code which can be used with different types.
+// There are no ENUMS in Javascript.
+// ENUMS : special types in Typescript that allow us to store a set of constants or keywords & associate them with a numeric value.
 
-const addUID = (obj : Object) => {
-    let uid = Math.floor(Math.random() * 10);
-    // obj -> Rest Notation, returns any no. of parameters supplied to the ().
-    
-    return{...obj, uid};
-}
+enum ResourceType {BOOK, AUTHOR, FILM, DIRECTOR, PERSON};
+// indexing starts from 0
 
-let docOne = addUID({name : 'yoshi', age : 25});
-console.log(docOne);
-// console.log(docOne.name); //error as properties of docOne are not captured by obj.
-// get rid of this error by using Generics.
-// T can be any letter, prefer T. 
-// T captures the items / properties being passed to the () or object.
-const addUIDNew = <T>(obj : T) => {
-    let uid = Math.floor(Math.random() * 10);
-    // obj -> Rest Notation, returns any no. of parameters supplied to the ().
-    return{...obj, uid};
-}
-
-let docTwo = addUIDNew({name : 'mario', age : 35});
-console.log(docTwo);
-console.log(docTwo.name); //error goes!
-
-let docThree = addUIDNew('hello'); //allowed as strings are also treated as objects but bad practice
-console.log(docThree); //{0: "h", 1: "e", 2: "l", 3: "l", 4: "o", uid: 1}
-
-// Restrict the generic to use only objects. use keyword extends
-
-const addUIDNewRestrict = <T extends object>(obj : T) => {
-    let uid = Math.floor(Math.random() * 10);
-    // obj -> Rest Notation, returns any no. of parameters supplied to the ().
-    return{...obj, uid};
-}
-
-// let docFour = addUIDNewRestrict('hello'); // error 
-
-// Restrict to have the name property.
-// Extra properties are allowed!
-
-const addUIDNewRestrictNew = <T extends {name : string}>(obj : T) => {
-    let uid = Math.floor(Math.random() * 10);
-    // obj -> Rest Notation, returns any no. of parameters supplied to the ().
-    return{...obj, uid};
-}
-
-let docFive = addUIDNewRestrictNew({name : 'Luigi' , age : 55});
-// let docSix = addUIDNewRestrictNew({ age : 55}); //error since name property is missing.
-
-console.log(docFive);
-
-// Generics with Interfaces
-// Benefits : Interface restrict us to use a particular structure of an object plus
-// Generics give us the flexibility to use the types as per our own needs.  
-
-interface Resource<T>{
+interface Resource{
     uid : number;
-    resourceName : string;
-    data : T;    
+    resourceType : ResourceType;
 }
 
-const docSeven : Resource<String[]> = {
+const docOne : Resource = {
     uid : 5,
-    resourceName : 'Grocery Shopping!',
-    data : ['Milk', 'Butter', 'Bread']
+    resourceType : ResourceType.BOOK
 }
 
-console.log(docSeven);
+const docTwo : Resource = {
+    uid : 6,
+    resourceType : 2 //allowed
+}
+
+console.log(docOne); //{uid: 5, resourceType: 0}
+console.log(docTwo); //{uid: 6, resourceType: 2}
